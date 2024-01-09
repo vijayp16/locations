@@ -18,14 +18,16 @@ function shareLocation() {
             const longitude = position.coords.longitude;
 
             // Replace '1234567890' with the target phone number
-            const phoneNumber = '9591945193';
+            const phoneNumber = '918660750519'; // WhatsApp number including country code
 
             // Construct a URL with the location information
             const locationUrl = `https://maps.google.com?q=${latitude},${longitude}`;
 
-            // You may use an API to send the location to the specified phone number
-            // For demonstration purposes, we're logging the location URL to the console
-            console.log(`Sharing location with ${phoneNumber}: ${locationUrl}`);
+            // Create a WhatsApp message with the location
+            const message = `Sharing location: ${locationUrl}`;
+
+            // Open WhatsApp Web with the pre-filled message
+            openWhatsAppWeb(phoneNumber, message);
         }, function(error) {
             // Handle errors, if any
             console.error("Error getting location:", error.message);
@@ -34,6 +36,16 @@ function shareLocation() {
         // Geolocation is not supported
         alert("Geolocation is not supported by your browser.");
     }
+}
+
+function openWhatsAppWeb(phoneNumber, message) {
+    const url = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+
+    // Open a new window or tab with WhatsApp Web
+    window.open(url, '_blank');
+
+    // Alternatively, you can redirect the current window to WhatsApp Web
+    // window.location.href = url;
 }
 </script>
 
