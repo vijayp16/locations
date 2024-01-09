@@ -3,40 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Share Location for 24 Hours</title>
+    <title>Install App</title>
 </head>
 <body>
-    <button onclick="shareLocation()">Share My Location for 24 Hours</button>
+    <h1>Install My Awesome App</h1>
+    
+    <p>If you haven't installed the app yet, click the button below to download and install:</p>
 
-    <script>
-        function shareLocation() {
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-
-                    const phoneNumber = '918123465172';  // Replace with your other phone number
-
-                    // You would need to implement the logic to send the location to the server
-                    // and handle sending the SMS from the server.
-                    // This is just a placeholder function.
-                    shareLocationWithServer(latitude, longitude, phoneNumber);
-
-                    alert('Your location has been shared for 24 hours.');
-                }, function(error) {
-                    console.error("Error getting location:", error.message);
-                });
-            } else {
-                alert("Geolocation is not supported by your browser.");
-            }
-        }
-
-        // This function is a placeholder for the actual implementation
-        function shareLocationWithServer(latitude, longitude, phoneNumber) {
-            // You need to implement the logic to send the location to your server
-            // which will then handle sending SMS with the location and duration.
-            console.log(`Sharing location with ${phoneNumber}: ${latitude}, ${longitude}`);
-        }
-    </script>
+    <!-- Replace 'your-app-deep-link' with the actual deep link for your app -->
+    <a href="https://netflix.en.softonic.com/">
+        <button>Install Now</button>
+    </a>
 </body>
 </html>
