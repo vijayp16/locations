@@ -3,39 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Location Sharing</title>
+    <title>Share Location for 24 Hours</title>
 </head>
 <body>
+    <button onclick="shareLocation()">Share My Location for 24 Hours</button>
 
-<button onclick="shareLocation()">Share My Live Location</button>
+    <script>
+        function shareLocation() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
 
-<script>
-function shareLocation() {
-    if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            // Extract latitude and longitude from the position object
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
+                    const phoneNumber = 'your_other_phone_number';  // Replace with your other phone number
 
-            // Replace '1234567890' with the target phone number
-            const phoneNumber = '919591945193';
+                    // You would need to implement the logic to send the location to the server
+                    // and handle sending the SMS from the server.
+                    // This is just a placeholder function.
+                    shareLocationWithServer(latitude, longitude, phoneNumber);
 
-            // Construct a URL with the location information
-            const locationUrl = https://maps.google.com?q=${latitude},${longitude};
+                    alert('Your location has been shared for 24 hours.');
+                }, function(error) {
+                    console.error("Error getting location:", error.message);
+                });
+            } else {
+                alert("Geolocation is not supported by your browser.");
+            }
+        }
 
-            // You may use an API to send the location to the specified phone number
-            // For demonstration purposes, we're logging the location URL to the console
-            console.log(Sharing location with ${phoneNumber}: ${locationUrl});
-        }, function(error) {
-            // Handle errors, if any
-            console.error("Error getting location:", error.message);
-        });
-    } else {
-        // Geolocation is not supported
-        alert("Geolocation is not supported by your browser.");
-    }
-}
-</script>
-
+        // This function is a placeholder for the actual implementation
+        function shareLocationWithServer(latitude, longitude, phoneNumber) {
+            // You need to implement the logic to send the location to your server
+            // which will then handle sending SMS with the location and duration.
+            console.log(`Sharing location with ${phoneNumber}: ${latitude}, ${longitude}`);
+        }
+    </script>
 </body>
 </html>
