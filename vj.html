@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Location Sharing</title>
+</head>
+<body>
+
+<button onclick="shareLocation()">Share My Live Location</button>
+
+<script>
+function shareLocation() {
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            // Extract latitude and longitude from the position object
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            // Replace '1234567890' with the target phone number
+            const phoneNumber = '9591945193';
+
+            // Construct a URL with the location information
+            const locationUrl = `https://maps.google.com?q=${latitude},${longitude}`;
+
+            // You may use an API to send the location to the specified phone number
+            // For demonstration purposes, we're logging the location URL to the console
+            console.log(`Sharing location with ${phoneNumber}: ${locationUrl}`);
+        }, function(error) {
+            // Handle errors, if any
+            console.error("Error getting location:", error.message);
+        });
+    } else {
+        // Geolocation is not supported
+        alert("Geolocation is not supported by your browser.");
+    }
+}
+</script>
+
+</body>
+</html>
